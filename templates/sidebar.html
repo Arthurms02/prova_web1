@@ -1,0 +1,62 @@
+<nav class="navbar bg-body-tertiary fixed-top d-lg-none">
+    <div class="container-fluid">
+        <a class="navbar-brand text-white" href="#">Dashboard</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebarOffcanvas"
+            aria-controls="sidebarOffcanvas">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+    </div>
+</nav>
+
+<div class="offcanvas offcanvas-start text-bg-dark d-lg-none sidebar-mobile bg-body-tertiary" tabindex="-1" id="sidebarOffcanvas"
+    aria-labelledby="sidebarOffcanvasLabel">
+    <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="sidebarOffcanvasLabel">Menu</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+        <ul class="navbar-nav flex-column">
+            <li class="nav-item">
+                <a class="nav-link active" href="{% url 'dashboard' %}"><i class="bi bi-house-door me-2"></i>Início</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'estatisticas' %}"><i class="bi bi-bar-chart-line me-2"></i>Estatísticas</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'produtos' %}"><i class="bi bi-box-seam me-2"></i>Produtos</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'estoque' %}"><i class="bi bi-inboxes-fill me-2"></i>Estoque</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#"><i class="bi bi-box-arrow-left me-2"></i>Sair</a>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<div class="container-fluid">
+    <div class="row">
+        <nav class="col-lg-2 d-none d-lg-block bg-dark text-white position-fixed top-0 start-0 vh-100 p-3 bg-body-tertiary">
+            <h2 class="mb-4">Dashboard</h5>
+            <ul class="navbar-nav flex-column">
+                <li class="nav-item">
+                    <a class="nav-link active font" href="{% url 'dashboard' %}"><i class="bi bi-house-door me-2"></i>Início</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link font" href="{% url 'estatisticas' %}"><i class="bi bi-bar-chart-line me-2"></i>Estatísticas</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link font" href="{% url 'produtos' %}"><i class="bi bi-box-seam me-2"></i>Produtos</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link font" href="{% url 'estoque' %}"><i class="bi bi-inboxes-fill me-2"></i>Estoque</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link font" href="#"><i class="bi bi-box-arrow-left me-2"></i>Sair</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>

@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+{{ block.super }} - Produtos
+{% endblock %}
+
+{% block content %}
+
+{{ produtos_labels|json_script:"labels" }}
+{{ produtos_data|json_script:"data" }}
+
+<h1 class="text-center mb-4 mt-4">Produtos</h1>
+{% include 'grafico_produtos.html' %}
+
+{% endblock %}
+
+{% block scripts %}
+<script src="{% static 'js/grafico_produtos.js' %}"></script>
+{% endblock %}

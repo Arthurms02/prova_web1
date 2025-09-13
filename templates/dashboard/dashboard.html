@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+{{ block.super }} - Meu Dashboard
+{% endblock %}
+
+
+{% block content %}
+
+<div class="container-fluid">
+    <div class="row row-cols-1 row-cols-md-2 g-4 mt-4">
+        <div class="col">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h5 class="card-title">Faturamento mensal</h5>
+                    <h1 class="card-text">R$ {{ media_mensal|floatformat:2 }}</h1>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h5 class="card-title">Total de Vendas Realizadas no Mês</h5>
+                    <h1 class="card-text">{{ total_vendas_mes|floatformat:1 }}</h1>
+                    <p class="card-text">unidades</p>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h5 class="card-title">Receita Anual</h5>
+                    <h1 class="card-text">R$ {{ total_vendas_ano_2025|floatformat:2 }}</h1>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h5 class="card-title">Produtos Vendidos Anualmente</h5>
+                    <h1 class="card-text">{{ total_vendas_ano }}</h1>
+                    <p class="card-text">unidades</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{{ vendas_por_mes_labels|json_script:"labels" }}
+{{ vendas_por_mes_data|json_script:"data" }}
+
+<!-- codigo python -->
+
+{{ produtos_labels|json_script:"labels_produtos" }}
+{{ produtos_data|json_script:"data_produtos" }}
+
+<h1 class="text-center mb-2 mt-2">Dashboards</h1>
+
+<div class="row">
+
+    {% include 'grafico_vendas.html' %}
+
+    {% include 'grafico_produtos.html' %}
+
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="{% static 'js/grafico.js' %}"></script>
+{% endblock %}

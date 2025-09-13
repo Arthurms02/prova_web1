@@ -1,0 +1,24 @@
+
+body {
+    background-color: #0077ff;
+    font-family: Arial, sans-serif;
+}
+
+.bg-body-tertiary {
+    background-color: #363636 !important;
+}
+
+h1 {
+    color: #e2e2e2;
+}
+
+.sidebar-mobile {
+  --bs-offcanvas-width: 280px;
+}
+.text-white{
+    color: rgb(243, 243, 243) !important;
+}
+.font{
+    font-family: 'Arial Black', Arial, sans-serif;
+    font-size: 20px;
+}
