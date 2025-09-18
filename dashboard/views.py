@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.db.models import Sum, F
 from django.db.models.functions import TruncMonth
 from .models import Venda
+from datetime import datetime
 
 def dashboard(request):
 
@@ -17,6 +18,29 @@ def dashboard(request):
         total_vendido.append(vendas['montante_total'])
 
     # informações para tabela vendas -------------------------------------------------------------------------
+
+    # nova tabela de vendas 2025 -------------------------------------------------------------------------
+    vendas_2025 = Venda.objects.filter(data_venda__year=datetime.now().year).annotate(mes=TruncMonth('data_venda')).values('mes').annotate(montante_total=Sum(F('quantidade') * F('produto__preco'))).order_by('mes')
+    meses = [ 'Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez' ]
+    data = []
+    labels = []
+    mes = datetime.now().month + 1
+    ano = datetime.now().year
+    for i in range(12):
+        mes -= 1
+        if mes == 0:
+            mes = 12
+            ano -= 1
+        
+        soma_mes = 0
+        for i in vendas_2025:
+            if i['mes'].month == mes and i['mes'].year == ano:
+                soma_mes += i['montante_total']
+        
+        labels.append(meses[mes - 1])
+        data.append(soma_mes)
+
+    # nova tabela de vendas 2025 -------------------------------------------------------------------------
 
     # informações para os cards -------------------------------------------------------------------------
 
@@ -58,6 +82,8 @@ def dashboard(request):
         'total_vendas_mes': media_unidades_vendidas_mes,
         'total_vendas_ano': total_unidades_vendidas_ano['quantidade__sum'],
         'total_vendas_ano_2025': vendas_ano_2025['total_vendas_2025'],
+        'vendas_ano_atual_labels': labels[::-1],
+        'vendas_ano_atual_data': data[::-1],
     }
 
     return render(request, 'dashboard/dashboard.html', context)
