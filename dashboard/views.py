@@ -6,9 +6,6 @@ from datetime import datetime
 
 def dashboard(request):
 
-    # informações para tabela vendas -------------------------------------------------------------------------
-
-    vendas_por_mes_labels = ['Jan', 'Fev', 'Mar', 'Abr', 'Mai','jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez']
 
     totais_por_mes = Venda.objects.annotate(mes=TruncMonth('data_venda')).values('mes').annotate(montante_total=Sum(F('quantidade') * F('produto__preco'))).order_by('mes')
 
@@ -17,7 +14,6 @@ def dashboard(request):
     for vendas in totais_por_mes:
         total_vendido.append(vendas['montante_total'])
 
-    # informações para tabela vendas -------------------------------------------------------------------------
 
     # nova tabela de vendas 2025 -------------------------------------------------------------------------
     vendas_2025 = Venda.objects.filter(data_venda__year=datetime.now().year).annotate(mes=TruncMonth('data_venda')).values('mes').annotate(montante_total=Sum(F('quantidade') * F('produto__preco'))).order_by('mes')
@@ -73,8 +69,6 @@ def dashboard(request):
 
 
     context = {
-        'vendas_por_mes_labels': vendas_por_mes_labels,
-        'vendas_por_mes_data': total_vendido,
         'produtos_labels': produtos_labels,
         'produtos_data': produtos_data,
         'receita_anual': receita_anual,
