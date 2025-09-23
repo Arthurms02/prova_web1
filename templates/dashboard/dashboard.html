@@ -22,7 +22,7 @@
             <div class="card h-100">
                 <div class="card-body">
                     <h5 class="card-title">Media do total de vendas no mês</h5>
-                    <h1 class="card-text">{{ total_vendas_mes|default:0|floatformat:1 }}</h1>
+                    <h1 class="card-text">{{ total_vendas_mes|default:0 }}</h1>
                     <p class="card-text">unidades</p>
                 </div>
             </div>
@@ -39,7 +39,7 @@
             <div class="card h-100">
                 <div class="card-body">
                     <h5 class="card-title">Total de Vendas Realizadas no Ano anterior</h5>
-                    <h1 class="card-text">{{ total_vendas_ano| default:0 | floatformat:2 }}</h1>
+                    <h1 class="card-text">{{ total_vendas_ano| default:0 }}</h1>
                     <p class="card-text">unidades</p>
                 </div>
             </div>
